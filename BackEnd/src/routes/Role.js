@@ -7,7 +7,7 @@ router.post("/addRole", async (req, res) => {
     console.log('ruta de creacion de Role'); //Ruta para Crear un role. Solo permitido para usuarios con el rol "gerente".
     try {
         const data = req.body;
-        const newRole = Role.Create(data);
+        const newRole = Role.create(data);
         res.status(201).send(newRole);
     } catch (error) {
         res.status(400).send( {error: error.message });
@@ -16,7 +16,7 @@ router.post("/addRole", async (req, res) => {
 });
 
 
-router.put( "/userRole/:id", async (req, res) => {
+router.put( "/updateRole/:id", async (req, res) => {
     console.log('ruta de actualizacion de usuarios'); //Actualiza un usuario específico por su ID. Solo permitido para usuarios con el rol "gerente".
     const id = req.params.id;
     const { roleName } = req.body; // Asume que el nombre del rol se envía en el cuerpo de la solicitud
@@ -34,12 +34,11 @@ router.put( "/userRole/:id", async (req, res) => {
         }
     
         // Asigna el rol al usuario
-        user.role_id = role.id;
+        user.role_id = role.name;
     
         // Guarda los cambios en la base de datos
         await user.save();
-    
-        res.status(200).send("Role assigned successfully", user);
+        res.status(200).send(user);
       } catch (error) {
         res.status(400).send({ error: error.message });
     }

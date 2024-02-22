@@ -8,7 +8,7 @@ router.post("/addSale", async (req, res) => {
     try {
         const data = req.body;
         const newSale = Sale.bulkCreate(data);
-        res.status(201).send(newSale, "Venta creada con exito");
+        res.status(201).send(newSale);
     } catch (error) {
         res.status(400).send( {error: error.message });
     }
@@ -25,7 +25,7 @@ router.put( "/sale/:id", async (req, res) => {
             res.status(400).send({ error: error.menssage });
         }
         await user.update(updateSale);
-        res.status(200).send("Se actualizo la venta con exito", user);
+        res.status(200).send("Se actualizo la venta con exito");
     } catch (error) {
         res.status(400).send({ error: error.message });
     }
@@ -36,7 +36,7 @@ router.delete( "/sale/:id", async (req, res) => {
     const saleId = req.params.id;
     try {
         const sale = await Sale.findByPk(saleId);
-        if(user) {
+        if(sale) {
             await sale.destroy();
             res.status(200).send("Venta eliminada con exito");
         }else {

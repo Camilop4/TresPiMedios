@@ -67,7 +67,7 @@ router.put( "/user/:id", async (req, res) => {
             res.status(400).send({ error: error.menssage });
         }
         await user.update(updateUser);
-        res.status(200).send("Se actualizo Usuario con Exito", user);
+        res.status(200).send("Se actualizo Usuario con Exito");
     } catch (error) {
         res.status(400).send({ error: error.message });
     }
