@@ -10,7 +10,9 @@ module.exports = (sequelize) => {
         },
 
         products_id: {
-            type: DataTypes.UUID
+            type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
+            allowNull: false
         },
 
         qty: {
@@ -25,10 +27,11 @@ module.exports = (sequelize) => {
 
         users_id: {
             type: DataTypes.UUID,
+            defaultValue: DataTypes.UUIDV4,
             allowNull: false
         },
         
     }, {
-        timetamps: false
+        timestamps: false
     });
 };
