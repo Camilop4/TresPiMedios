@@ -1,6 +1,9 @@
 const server = require("./src/app");
+const { conn } = require('./src/db')
 
-
-server.listen("3001", () => {
-    console.log("server listening on port 3001");
+//sincronizo todos los modelos con la base de datos
+conn.sync({ force: true }).then(()=>{
+    server.listen("3001", () => {
+    console.log("server listening on port 3001"); //verifico mi conxion al puerto 
+    });
 }); 

@@ -25,11 +25,11 @@ module.exports = (sequelize) => {
         },
 
         roles_id: {
-            type: DataTypes.UUID,
-            allowNull: false
+            type: DataTypes.STRING,
+            allowNull: true
         },
 
     }, {
-        timetamps: false
+        timestamps: false
     });
 };
