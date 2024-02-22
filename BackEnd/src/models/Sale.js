@@ -1,7 +1,8 @@
 const { DataTypes } = require('sequelize');
+const { options } = require('../routes');
 
 module.exports = (sequelize) => {
-    sequelize.define('sale', {
+    const Sale = sequelize.define('sale', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
@@ -9,9 +10,13 @@ module.exports = (sequelize) => {
             primaryKey: true
         },
 
-        products_id: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+
+        price: {
+            type: DataTypes.INTEGER,
             allowNull: false
         },
 
@@ -21,17 +26,21 @@ module.exports = (sequelize) => {
         },
 
         sale_at: {
-            type: DataTypes.DATE,
-            allowNull: false
+            type: DataTypes.DATEONLY,
+            allowNull:false
         },
 
-        users_id: {
-            type: DataTypes.UUID,
-            defaultValue: DataTypes.UUIDV4,
+        totaSale: {
+            type: DataTypes.INTEGER
+        },
+
+        user_name: {
+            type: DataTypes.STRING,
             allowNull: false
         },
         
     }, {
-        timestamps: false
+        timestamps: false,
     });
+    return Sale;
 };

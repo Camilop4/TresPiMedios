@@ -12,7 +12,9 @@ const {
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/trespi`, {
     logging: false, // Establecer que no haga console.log para ver las consultas SQL sin procesar.
     native: false, // le permite a Sequelize saber que podemos usar pg-native para ~30% más de velocidad
-})
+    dialect: 'postgres',
+    timezone: '-05:00',
+});
 
 try {
     sequelize.authenticate();

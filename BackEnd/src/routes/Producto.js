@@ -5,7 +5,7 @@ const { isAdmin } = require('../middlewares/auth');
 const router = Router();
 
 
-router.post("/addProducts", isAdmin, async (req, res) => {
+router.post("/addProducts", async (req, res) => {
     console.log('estoy en la ruta bulk de crear'); // Crea un nuevo producto. Solo permitido para usuarios con el rol "gerente"
     try {
         const data = req.body;
