@@ -28,18 +28,22 @@ const searchSale = require('./Sale');
 
 const dailyClosure = require('./DailyClose');
 const dailyMonth = require('./DailyMonth');
+const bdRouter = require('../middlewares/bdRoute');
 
 
 // Configuro los routers
 
+//iniciar BD con json de productos
+router.use('/', bdRouter);
+
 
 //Role
-router.use('/', addRole);
-router.use('/updateRole/:id', updateRole);
+router.use('/', hasRole('Manager'), addRole);
+router.use('/updateRole/:id', hasRole('Manager'), updateRole);
 
 //User
-router.use('/', getUsers);
-router.use('/addUser',  postUsers);
+router.use('/', hasRole('Manager'), getUsers);
+router.use('/addUser',  hasRole('Manager'), postUsers);
 router.use('/user/:id', hasRole('Manager'), deleteUser);
 router.use('/user/:id', hasRole('Manager'), searchUser);
 router.use('/user/:id', hasRole('Manager'), updateUser);

@@ -60,9 +60,10 @@ router.get( "/user/:id", async (req, res) => {
 router.put( "/user/:id", async (req, res) => {
     console.log('ruta de actualizacion de usuarios'); //Actualiza un usuario específico por su ID. Solo permitido para usuarios con el rol "gerente".
     const id = req.params.id;
+    const userId = id.trim(); //quito los espacios que pueda contener tanto al inicio como al final con el trim()
     const updateUser = req.body;
     try {
-        const user = await User.findByPk(id);
+        const user = await User.findByPk(userId);
         if(!user) {
             res.status(400).send({ error: error.menssage });
         }

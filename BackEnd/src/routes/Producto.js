@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const { Producto } = require("../db");
-const { isAdmin } = require('../middlewares/auth');
+
 
 const router = Router();
 

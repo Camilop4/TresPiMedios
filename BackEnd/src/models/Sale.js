@@ -1,8 +1,7 @@
 const { DataTypes } = require('sequelize');
-const { options } = require('../routes');
 
 module.exports = (sequelize) => {
-    const Sale = sequelize.define('sale', {
+    sequelize.define('sale', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
@@ -38,5 +37,4 @@ module.exports = (sequelize) => {
     }, {
         timestamps: false,
     });
-    return Sale;
 };
