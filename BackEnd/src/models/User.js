@@ -1,7 +1,9 @@
 const { DataTypes } = require('sequelize');
+const bcrypt = require('bcrypt');
+
 
 module.exports = (sequelize) => {
-    sequelize.define('user', {
+    const User = sequelize.define('user', {
         id: {
             type: DataTypes.UUID,
             defaultValue: DataTypes.UUIDV4,
@@ -32,4 +34,12 @@ module.exports = (sequelize) => {
     }, {
         timestamps: false
     });
+
+    User.beforeCreate(async (user, options) => {
+        const hashedPassword = await bcrypt.hash(user.password, 10);
+        user.password = hashedPassword;
+    });
+
+    return User;
+
 };
