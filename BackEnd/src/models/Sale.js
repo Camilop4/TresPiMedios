@@ -30,10 +30,6 @@ module.exports = (sequelize) => {
             allowNull:false
         },
 
-        totaSale: {
-            type: DataTypes.INTEGER
-        },
-
         user_name: {
             type: DataTypes.STRING,
             allowNull: false
